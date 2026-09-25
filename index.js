@@ -1854,21 +1854,10 @@ function bedModule(bot, mcData) {
 // FIX: wire up discord.events.chat flag
 function chatModule(bot) {
   bot.on("chat", (username, message) => {
-    if (!bot || username === bot.username) return;
+    if (username === bot.username) return;
 
-    try {
-      // FIX: send chat events to Discord if enabled
-      if (
-        config.discord &&
-        config.discord.enabled &&
-        config.discord.events &&
-        config.discord.events.chat
-      ) {
-        sendDiscordWebhook(`💬 **${username}**: ${message}`, 0x7289da);
-      }
-    } catch (e) {
-      addLog("[Chat] Error:", e.message);
-    }
+    // Read/process the Minecraft chat here.
+    // No bot.chat() or other sending function.
   });
 }
 
