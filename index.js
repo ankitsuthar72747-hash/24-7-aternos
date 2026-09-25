@@ -1866,17 +1866,6 @@ function chatModule(bot) {
       ) {
         sendDiscordWebhook(`💬 **${username}**: ${message}`, 0x7289da);
       }
-
-      if (config.chat && config.chat.respond) {
-        const lowerMsg = message.toLowerCase();
-        if (lowerMsg.includes("hello") || lowerMsg.includes("hi")) {
-          bot.chat(`Hello, ${username}!`);
-        }
-        if (message.startsWith("!tp ")) {
-          const target = message.split(" ")[1];
-          if (target) bot.chat(`/tp ${target}`);
-        }
-      }
     } catch (e) {
       addLog("[Chat] Error:", e.message);
     }
